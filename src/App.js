@@ -8,11 +8,10 @@ const App = () => {
     const data = localStorage.getItem("transactions"); //Criou-se uma variável para poder armazenar os dados pegos do 'localStorage'
     
     const [transactionsList, setTransactionsList] = useState(
-        
+        data ? JSON.parse(data) : []
         //Vai verificar se existe algum item no 'localStorage';
         //Se tiver, vai converter eles pra JSON;
         //Caso não haja resultados, irá retornar uma lista vazia
-        data ? JSON.parse(data) : []
     );
 
     const [income, setIncome] = useState(0); //Variável criada para as entradas
@@ -64,10 +63,14 @@ const App = () => {
                 expense={expense}
                 total={total}
             />
-            <Form handleAdd={handleAdd}/>
+            <Form 
+            handleAdd={handleAdd} 
+            transactionsList={transactionsList} 
+            setTransactionsList={setTransactionsList}
+            />
             <GlobalStyle />
         </>
-    )
-}
+    );
+};
 
 export default App;

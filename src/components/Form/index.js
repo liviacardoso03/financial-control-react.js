@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Grid from '../Grid';
 import * as C from './styles'
 
-const Form = ({ handleAdd }) => {
+const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
     const [desc, setDesc] = useState(''); //Descrição
     const [amount, setAmount] = useState(''); //Valor
     const [isExpense, setExpense] = useState(false); //Cheque
@@ -72,8 +73,9 @@ const handleSave = () => {
 
                 <C.Button onClick={handleSave}>Adicionar</C.Button>
             </C.Container>
+            <Grid itens={transactionsList} setItens={setTransactionsList} />
         </>
-    )
-}
+    );
+};
 
 export default Form;
